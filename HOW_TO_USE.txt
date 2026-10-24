@@ -1,0 +1,61 @@
+HOW TO USE: general-tool-building-rules
+======================================
+
+PURPOSE
+  Enforce a disciplined, documentation-first, fully restorable workflow and guardrails
+  for ANY software project or codebase. Gathers hard project constraints at session start,
+  discovers foundational docs, manages semantic-version git tags, updates implementation plans
+  and append-only changelogs, and guarantees full-repo GitHub backups after every pass.
+
+CAPABILITIES
+  - Step 0 constraint interview: proactively prompts for runtime/version limits, protected
+    unmodifiable files, secret/setting storage rules, and scope-of-effect discipline
+  - Foundational documentation discovery: locates README, architecture notes, App Trackers,
+    changelogs, and implementation plans across the project tree
+  - Semantic versioning derived directly from git tags (git describe --tags --abbrev=0)
+  - In-place progress tracking in implementation plans (*-IMPLEMENTATION-PLAN.md)
+  - Append-only logging to the project's permanent App Tracker / Changelog
+  - Ephemeral session notes lifecycle (persisted in git tag, removed from working tree)
+  - Mandatory full-repo commit, annotated tag (vX.Y.Z), and remote GitHub push backup
+
+USE CASES
+  - Developing features or bug fixes on any software codebase requiring strict change control
+  - Managing projects where loss of context, broken builds, or undocumented changes cannot occur
+  - Ensuring secrets and API keys never get committed to source control
+  - Seamless handoffs between AI sessions with complete historical fidelity and rollback capability
+
+IDEAS
+  - Invoke at the start of any major coding pass or refactor
+  - Use when taking over an unfamiliar codebase to systematically discover rules and architecture
+  - Combine with automated release pipelines or release note generators
+
+PROMPTS YOU CAN PASTE
+  /general-tool-building-rules
+
+  Apply general-tool-building-rules for this coding session.
+
+  Start a new pass using general-tool-building-rules. Here are our hard constraints: ...
+
+  Discover the foundational docs in this repo, plan the changes, and prepare for a versioned backup.
+
+  Finalize this pass under general-tool-building-rules: update docs, tag the version, and push to GitHub.
+
+EXAMPLE FLOW
+  You:   /general-tool-building-rules
+  Model: Step 0: Please provide this project's hard constraints:
+         - Platform or runtime limitations
+         - Files that must never be modified
+         - Location for secrets and user settings
+         - Scope of effect rules
+  You:   Node 20+, don't touch /vendor, secrets in .env only, touch only auth module.
+  Model: [Records constraints, searches project root and docs/ for existing documentation]
+         [Plans changes, implements code adhering to constraints]
+         [Derives semver bump from latest git tag, updates plan and tracker]
+         [Commits, tags v2.1.0, pushes to GitHub, cleans working tree dev notes]
+         Pass complete and verified.
+
+DEFAULT GOALS IF YOU DON'T NAME ONE
+  1. Interview for project hard constraints and secret boundaries
+  2. Discover existing documentation and changelogs
+  3. Formulate implementation plan and execute changes safely
+  4. Perform atomic doc updates, semantic git tagging, and GitHub backup
